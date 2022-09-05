@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokedex</title>
     <script src="script.js"></script>
+    <link rel="icon" type="image/x-icon" href="./img/pokeball.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts.css">
 </head>
-<body onload="loadPokemon()">
-    <div id="pokedex">
+<body onload="init()">
+    <nav>
+            <div class="logo">
+                <img src="./img/pokeball.png">
+                <h1>Pokedex</h1>
+            </div>
+            <input class="search-bar" placeholder="Enter Pokemonname ..." type="text">
+    </nav>
+
+    <div class="pokedex" id="pokedex"></div>
+
+    <div id="pokedex_alt" class="d-none">
         <h1 id="pokemonName"></h1>
     </div>
-    <div class="info-container">
+    <div class="info-container d-none" >
         <img id="pokemonImg">
     </div>
 
