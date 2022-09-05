@@ -23,16 +23,18 @@ async function loadPokemon() {
 function renderPokedex(renderStart) {
     pokedexContainer = document.getElementById('pokedex');
     for (let i = renderStart; i < loadedPokemon.length; i++) {
-        pokedexContainer.innerHTML += generatePokedexHTML(i);
+        let name = loadedPokemon[i]['name'];
+        name = capitalizeFirstLetter(name)
+        pokedexContainer.innerHTML += generatePokedexHTML(i, name);
     } 
 }
 
 
-function generatePokedexHTML(i) {
+function generatePokedexHTML(i, name) {
     return /*html*/ `
-        <div onclick="showDetails(${i})">
-            <h2>${loadedPokemon[i]['name']}</h2>
-            <img src=${loadedPokemon[i]['sprites']['other']['home']['front_default']}>
+        <div class="pokemon-card-preview" onclick="showDetails(${i})">
+            <img src=${loadedPokemon[i]['sprites']['other']['home']['front_default']}>    
+            <h2>${name}</h2>
         </div>
     `;
 }
