@@ -97,13 +97,114 @@ nav {
     background-color: #f45555;
 }
 
+.type-ctn {
+    display: flex;
+    align-items: center;
+}
+
 .type {
-    padding: 4px 12px;
+    display: block;
+    padding: 2px 12px;
     border-radius: 8px;
     margin-top: 16px;
     margin-bottom: 16px;
+    font-weight: bold;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+
+
+
+
+/*Pokemon Types background colors*/
+
+.normal {
+    background-color: #B5B5B5;
+    color: white;
+}
+
+.fire {
+    background-color: #EE3C24;
+    color: white;
+}
+
+.water {
+    background-color: #4D89E3;
+    color: white;
 }
 
 .grass {
-    background-color: green;
+    background-color: #3FAE28;
+    color: white;
+}
+
+.electric {
+    background-color: #F8C323;
+    color: white;
+}
+
+.ice {
+    background-color: #36BCD8;
+    color: white;
+}
+
+.fighting {
+    background-color: #A74D32;
+    color: white;
+}
+
+.poison {
+    background-color: #B55AA5;
+    color: white;
+}
+
+.ground {
+    background-color: #C7A649;
+    color: white;
+}
+
+.flying {
+    background-color: #70B9D8;
+    color: white;
+}
+
+.psychic {
+    background-color: #F2679E;
+    color: white;
+}
+
+.bug {
+    background-color: #B2B02D;
+    color: white;
+}
+
+.rock {
+    background-color: #C3AC5F;
+    color: white;
+}
+
+.ghost {
+    background-color: #6566BC;
+    color: white;    
+}
+
+.dark {
+    background-color: #735A4A;
+    color: white;
+}
+
+.dragon {
+    background-color: #6047F8;
+    color: white;
+}
+
+.steel {
+    background-color: #A8A5AC;
+    color: white;
+}
+
+.fairy {
+    background-color: #E6A5E6;
+    color: white;
 }
