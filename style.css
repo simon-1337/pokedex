@@ -53,7 +53,7 @@ nav {
     padding: 0 48px;
 }
 
-.pokemon-card-preview {
+.pokemon-overview-card{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,36 +65,45 @@ nav {
     border: 1px solid #fb6c6c;
 }
 
-.pokemon-card-preview:hover {
+.pokemon-overview-card:hover {
     cursor: pointer;
     background-color: #fb6c6c76;
     border: 1px solid #be2e2e;
 }
 
-.pokemon-card-preview img {
+.pokemon-overview-card img {
     height: 240px;
 }
 
-#pokedex_alt {
-    min-height: 40vh;
-    background-color: #fb6c6c;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-}
-
-#pokemonImg {
-    height: 250px;
-    margin-top: -200px;
-}
-
-.info-container {
-    background-color: white;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    min-height: 100px;
-    margin-top: -40px;
+.load-more-container {
+    height: 86px;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.load-more-btn {
+    padding: 12px 32px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    background-color: #fb6c6c;
+    cursor: pointer;
+}
+
+.load-more-btn:hover {
+    background-color: #f45555;
+}
+
+.type {
+    padding: 4px 12px;
+    border-radius: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.grass {
+    background-color: green;
 }

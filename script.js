@@ -24,27 +24,44 @@ function renderPokedex(renderStart) {
     pokedexContainer = document.getElementById('pokedex');
     for (let i = renderStart; i < loadedPokemon.length; i++) {
         let name = loadedPokemon[i]['name'];
-        name = capitalizeFirstLetter(name)
+        name = capitalizeFirstLetter(name);
         pokedexContainer.innerHTML += generatePokedexHTML(i, name);
+        renderTypeSectionOverviewCard(i);
     } 
 }
 
 
 function generatePokedexHTML(i, name) {
     return /*html*/ `
-        <div class="pokemon-card-preview" onclick="showDetails(${i})">
+        <div class="pokemon-overview-card" onclick="showDetails(${i})">
             <img src=${loadedPokemon[i]['sprites']['other']['home']['front_default']}>    
             <h2>${name}</h2>
+            <div id="types-section-overview-card${i}">
+            </div>
         </div>
     `;
 }
 
+//renders the display of the types on the cards in the Pokedex
+function renderTypeSectionOverviewCard(i) {
+    let typeContainer = document.getElementById('types-section-overview-card' + i);
+    let types = loadedPokemon[i]['types'];
+    for (let j = 0; j < types.length; j++) {
+        typeContainer.innerHTML += templateTypeSectionOverviewCard(types[j]['type']['name'], i, j);
+        addClassesToType(types[j]['type']['name'], i, j);
+    }
+}
 
-function renderPokemonInfo() {
-    let name = currentPokemon['name']
-    name = capitalizeFirstLetter(name);
-    document.getElementById('pokemonName').innerHTML = name;
-    document.getElementById('pokemonImg').src = currentPokemon['sprites']['other']['home']['front_default'];
+
+function templateTypeSectionOverviewCard(type, i, j) {
+    return /*html*/ `
+        <span id="type${i},${j}" class="type">${type}</span>
+    `;
+}
+
+
+function addClassesToType(type, i, j) {
+    document.getElementById(`type${i},${j}`).classList.add(type)
 }
 
 
