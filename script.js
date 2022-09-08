@@ -101,6 +101,22 @@ function addClassesToType(type, i, j) {
 }
 
 
+function searchPokemons() {
+    let input = document.getElementById('searchbar').value;
+    input=input.toLowerCase();
+    let pokemons = document.getElementsByClassName('pokemon-overview-card');
+        
+    for (i = 0; i < pokemons.length; i++) { 
+        if (!pokemons[i].innerHTML.toLowerCase().includes(input)) {
+            pokemons[i].classList.add('d-none');
+        }
+        else {
+            pokemons[i].classList.remove('d-none');                 
+        }
+    }
+}
+
+
 function capitalizeFirstLetter(name) {
     return name.charAt(0).toUpperCase() + name.slice(1);
 }
