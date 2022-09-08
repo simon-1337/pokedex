@@ -133,7 +133,8 @@ a {
 .details {
     background-color: white;
     height: calc(100vh - 64.72px);
-    padding: 0 64px;
+    padding-right: 48px;
+    min-width: 736px;
     display: flex;
     flex-direction: column;
 }
