@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="fonts.css">
 </head>
 <body onload="init()">
-    <nav>
-            <div class="logo">
+    <nav id="nav">
+            <a href="index.html" class="logo">
                 <img src="./img/pokeball.png">
                 <h1>Pokedex</h1>
-            </div>
+            </a>
             <input id="searchbar" onkeyup="searchPokemons()" class="searchbar" placeholder="Search Pokemons..." type="text">
     </nav>
 
@@ -24,13 +24,7 @@
         <button onclick="loadPokemon()" class="load-more-btn">Load More Pokemon</button>
     </div>
 
-
-    <div id="pokedex_alt" class="d-none">
-        <h1 id="pokemonName"></h1>
-    </div>
-    <div class="info-container d-none" >
-        <img id="pokemonImg">
-    </div>
+    <div id="details-ctn" class="details-ctn d-none"></div>
 
 </body>
 </html>

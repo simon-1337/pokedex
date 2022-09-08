@@ -118,6 +118,36 @@ function searchPokemons() {
 }
 
 
+function showDetails(i) {
+    console.log(loadedPokemon[i])
+    let detailContainer = document.getElementById('details-ctn');
+    let chosenPokemon = loadedPokemon[i];
+    detailContainer.classList.remove('d-none');
+    disableScrolling();
+    detailContainer.innerHTML = templateShowDetails(chosenPokemon);
+}
+
+//disables Scrolling by fixing the nav bar on top.
+function disableScrolling() {
+    document.getElementById('nav').classList.add('position-fixed');
+}
+
+
+function templateShowDetails(chosenPokemon) {
+    return /*html*/ `
+        <div class="details">
+            <div class="details-child">
+                <img src="${chosenPokemon['sprites']['other']['home']['front_default']}">
+                <div class="details-child-susbsection">
+                    <h2>${chosenPokemon['name']}</h2>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+
 function capitalizeFirstLetter(name) {
     return name.charAt(0).toUpperCase() + name.slice(1);
 }

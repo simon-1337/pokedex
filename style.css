@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
-    background-color: rgba(250, 239, 225, 0.5);
+    background-color: #FCF6EF;
 }
 
 h1 {
@@ -33,6 +33,11 @@ nav {
 .logo img {
     height: 30px;
     margin-right: 8px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
 }
 
 .searchbar {
@@ -113,7 +118,42 @@ nav {
     margin-right: 4px;
 }
 
+.details-ctn  {
+    position: fixed;
+    top: 64.72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FCF6EF;
+    display: flex;
+    justify-content: center;
+    
+}
 
+.details {
+    background-color: white;
+    height: calc(100vh - 64.72px);
+    padding: 0 64px;
+    display: flex;
+    flex-direction: column;
+}
+
+.details-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-child img {
+    height: 376px;
+    margin-right: 48px;
+}
+
+.position-fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+}
 
 
 
