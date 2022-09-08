@@ -68,7 +68,7 @@ function generatePokedexHTML(i, number, name) {
     return /*html*/ `
         <div class="pokemon-overview-card" onclick="showDetails(${i})">
             <img src=${loadedPokemon[i]['sprites']['other']['home']['front_default']}>    
-            <h2>${name}</h2> 
+            <h2 class="pokemon-name">${name}</h2> 
             <span>Nr. ${number}</span>
             <div id="types-section-overview-card${i}" class="type-ctn">
             </div>
@@ -105,9 +105,10 @@ function searchPokemons() {
     let input = document.getElementById('searchbar').value;
     input=input.toLowerCase();
     let pokemons = document.getElementsByClassName('pokemon-overview-card');
+    let pokemonnames = document.getElementsByClassName('pokemon-name')
         
-    for (i = 0; i < pokemons.length; i++) { 
-        if (!pokemons[i].innerHTML.toLowerCase().includes(input)) {
+    for (i = 0; i < pokemons.length; i++) {
+        if (!pokemonnames[i].innerHTML.toLowerCase().includes(input)) {
             pokemons[i].classList.add('d-none');
         }
         else {
