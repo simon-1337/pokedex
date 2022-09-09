@@ -133,7 +133,7 @@ a {
 .details {
     background-color: white;
     height: calc(100vh - 64.72px);
-    padding-right: 48px;
+    padding: 48px;
     min-width: 736px;
     display: flex;
     flex-direction: column;
@@ -141,13 +141,13 @@ a {
 
 .details-child {
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .details-child img {
-    height: 376px;
+    height: 300px;
     margin-right: 48px;
+    background-color: #00000012;
+    border-radius: 16px;
 }
 
 .position-fixed {
@@ -157,6 +157,21 @@ a {
 }
 
 
+.close-btn {
+    position: fixed;
+    padding: 12px;
+    bottom: 10px;
+    left: auto;
+    right: auto;
+    height: 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 125ms;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+}
 
 /*Pokemon Types background colors*/
 

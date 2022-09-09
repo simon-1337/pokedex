@@ -123,12 +123,12 @@ function showDetails(i) {
     let detailContainer = document.getElementById('details-ctn');
     let chosenPokemon = loadedPokemon[i];
     detailContainer.classList.remove('d-none');
-    disableScrolling();
+    addPositionFixedToNav();
     detailContainer.innerHTML = templateShowDetails(chosenPokemon);
 }
 
 //disables Scrolling by fixing the nav bar on top.
-function disableScrolling() {
+function addPositionFixedToNav() {
     document.getElementById('nav').classList.add('position-fixed');
 }
 
@@ -144,7 +144,20 @@ function templateShowDetails(chosenPokemon) {
                 </div>
             </div>
         </div>
+        <img class="close-btn" onclick="closeDetails()" src="./img/close.png">
     `;
+}
+
+
+function closeDetails() {
+    let detailContainer = document.getElementById('details-ctn')
+    detailContainer.classList.add('d-none');
+    removePositionFixedFromNav()
+}
+
+
+function removePositionFixedFromNav() {
+    document.getElementById('nav').classList.remove('position-fixed');
 }
 
 
