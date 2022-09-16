@@ -10,7 +10,12 @@ h1 {
 }
 
 h2 {
-    margin-block-start: 16px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+h4 {
+    margin-block-start: 0;
     margin-block-end: 0;
 }
 
@@ -102,17 +107,17 @@ a {
     background-color: #f45555;
 }
 
-.type-ctn {
+.type-section-overview {
     display: flex;
     align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 .type {
     display: block;
     padding: 2px 12px;
     border-radius: 8px;
-    margin-top: 16px;
-    margin-bottom: 16px;
     font-weight: bold;
     margin-left: 4px;
     margin-right: 4px;
@@ -133,14 +138,15 @@ a {
 .details {
     background-color: white;
     height: calc(100vh - 64.72px);
-    padding: 48px;
-    min-width: 736px;
+    padding: 48px 124px;
+    max-width: 842px;
     display: flex;
     flex-direction: column;
 }
 
 .details-child {
     display: flex;
+    margin-bottom: 18px;
 }
 
 .details-child img {
@@ -172,6 +178,63 @@ a {
 .close-btn:hover {
     transform: scale(1.2);
 }
+
+.type-container-details {
+    margin: 12px 0;
+}
+
+.type-container-details span {
+    font-weight: bold;
+}
+
+.types-section-details {
+    display: flex;
+    margin-top: 8px;
+}
+
+.evolution-chain-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #00000012;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+#evolution-chain {
+    display: flex;
+    justify-content: space-between;
+}
+
+.evolution-image {
+    height: 120px;
+    margin-top: -15px;
+}
+
+.habitat {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.habitat span {
+    margin-left: 8px;
+}
+
+@media (max-width: 500px) {
+    nav {
+        padding: 16px 16px;
+    }
+
+    nav a h1 {
+        display: none;
+    }
+    
+    nav {
+        padding: 16px 32px;
+    }
+}
+
+
+
 
 /*Pokemon Types background colors*/
 

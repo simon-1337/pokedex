@@ -1,9 +1,12 @@
 let currentPokemon;
+let currentPokemonSpecies;
 let loadedPokemon = [];
-
+let loadedPokemonSpecies = [];
+let images = [];
 
 async function init() {
     loadPokemon();
+    loadPokemonsSpecies();
  }
 
 
@@ -32,10 +35,37 @@ async function getPokemons(start, end) {
         let response = await fetch(url);
         currentPokemon = await response.json();
         loadedPokemon.push(currentPokemon);
+        pushImages(currentPokemon);
     }
 }
 
 
+function pushImages(currentPokemon) {
+        images.push(currentPokemon['sprites']['other']['home']['front_default']);
+}
+
+
+async function loadPokemonsSpecies() {
+    let start = loadedPokemonSpecies.length + 1;
+    let end = start + 24;
+    if (endReached(end)) {
+        end = 899;
+    }
+    await getPokemonsSpecies(start, end)
+}
+
+
+async function getPokemonsSpecies(start, end) {
+    for (let i = start; i < end; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon-species/${i}`;
+        let response = await fetch(url);
+        currentPokemonSpecies = await response.json();
+        loadedPokemonSpecies.push(currentPokemonSpecies);
+    }
+}
+
+
+//loadmore-btn will be invisible
 function loadMoreBtnInvisible() {
     if (endReached(loadedPokemon.length + 1)) {
         document.getElementById('load-more-container').classList.add('d-none');
@@ -49,8 +79,8 @@ function renderPokedex(renderStart) {
         let number = numberTo3Digits(i + 1)
         let name = loadedPokemon[i]['name'];
         name = capitalizeFirstLetter(name);
-        pokedexContainer.innerHTML += generatePokedexHTML(i, number, name);
-        renderTypeSectionOverviewCard(i);
+        pokedexContainer.innerHTML += templatePokedexOverview(i, number, name);
+        renderTypeSection('types-section-overview-card', 'overview', i);
     } 
 }
 
@@ -64,40 +94,22 @@ function numberTo3Digits(i) {
 }
 
 
-function generatePokedexHTML(i, number, name) {
-    return /*html*/ `
-        <div class="pokemon-overview-card" onclick="showDetails(${i})">
-            <img src=${loadedPokemon[i]['sprites']['other']['home']['front_default']}>    
-            <h2 class="pokemon-name">${name}</h2> 
-            <span>Nr. ${number}</span>
-            <div id="types-section-overview-card${i}" class="type-ctn">
-            </div>
-        </div>
-    `;
-}
-
 //renders the display of the types on the cards in the Pokedex
-function renderTypeSectionOverviewCard(i) {
-    let typeContainer = document.getElementById('types-section-overview-card' + i);
+function renderTypeSection(sectionID, section, i) {
+    let typeContainer = document.getElementById(sectionID + i);
     let types = loadedPokemon[i]['types'];
     for (let j = 0; j < types.length; j++) {
         let type = types[j]['type']['name']
         typeCapitalized = capitalizeFirstLetter(type)
-        typeContainer.innerHTML += templateTypeSectionOverviewCard(typeCapitalized, i, j);
-        addClassesToType(type, i, j);
+        typeContainer.innerHTML += templateTypeSection(typeCapitalized, section, i, j);
+        addClassesToType(type, section, i, j);
     }
 }
 
 
-function templateTypeSectionOverviewCard(type, i, j) {
-    return /*html*/ `
-        <span id="type${i},${j}" class="type">${type}</span>
-    `;
-}
 
-
-function addClassesToType(type, i, j) {
-    document.getElementById(`type${i},${j}`).classList.add(type)
+function addClassesToType(type, section, i, j) {
+    document.getElementById(`type${section}${i},${j}`).classList.add(type)
 }
 
 
@@ -105,8 +117,7 @@ function searchPokemons() {
     let input = document.getElementById('searchbar').value;
     input=input.toLowerCase();
     let pokemons = document.getElementsByClassName('pokemon-overview-card');
-    let pokemonnames = document.getElementsByClassName('pokemon-name')
-        
+    let pokemonnames = document.getElementsByClassName('pokemon-name')    
     for (i = 0; i < pokemons.length; i++) {
         if (!pokemonnames[i].innerHTML.toLowerCase().includes(input)) {
             pokemons[i].classList.add('d-none');
@@ -118,34 +129,23 @@ function searchPokemons() {
 }
 
 
-function showDetails(i) {
-    console.log(loadedPokemon[i])
+function renderDetails(i) {
     let detailContainer = document.getElementById('details-ctn');
-    let chosenPokemon = loadedPokemon[i];
+    enableFullScreen(detailContainer);
+    detailContainer.innerHTML = templateShowDetails(i);
+    renderTypeSection('types-section-details', 'details', i,)
+}
+
+
+function enableFullScreen(detailContainer) {
     detailContainer.classList.remove('d-none');
     addPositionFixedToNav();
-    detailContainer.innerHTML = templateShowDetails(chosenPokemon);
 }
+
 
 //disables Scrolling by fixing the nav bar on top.
 function addPositionFixedToNav() {
     document.getElementById('nav').classList.add('position-fixed');
-}
-
-
-function templateShowDetails(chosenPokemon) {
-    return /*html*/ `
-        <div class="details">
-            <div class="details-child">
-                <img src="${chosenPokemon['sprites']['other']['home']['front_default']}">
-                <div class="details-child-susbsection">
-                    <h2>${chosenPokemon['name']}</h2>
-                    <div></div>
-                </div>
-            </div>
-        </div>
-        <img class="close-btn" onclick="closeDetails()" src="./img/close.png">
-    `;
 }
 
 
@@ -158,6 +158,68 @@ function closeDetails() {
 
 function removePositionFixedFromNav() {
     document.getElementById('nav').classList.remove('position-fixed');
+}
+
+
+async function renderEvolutions(i) {
+    let url = loadedPokemonSpecies[i]['evolution_chain']['url'];
+    let response = await fetch(url);
+    let evolutionChain = await response.json();
+    getEvolutionsURLs(evolutionChain);
+}
+
+
+function getEvolutionsURLs(evolutionChain) {
+    let evolutions = []
+    evolutions.push(getBaseEvolutionURL(evolutionChain));
+    evolutions.push(getSecondEvolutionURL(evolutionChain));
+    if (checkIfTheirdEvolution(evolutionChain)) {
+        evolutions.push(getTheirdEvolution(evolutionChain));
+    }
+    getEvolutionsIDs(evolutions);   
+}
+
+
+function getBaseEvolutionURL(evolutionChain) {
+    return evolutionChain['chain']['species']['url'];
+}
+
+
+function getSecondEvolutionURL(evolutionChain) {
+    return evolutionChain['chain']['evolves_to']['0']['species']['url'];
+}
+
+
+function checkIfTheirdEvolution(evolutionChain) {
+    if (evolutionChain['chain']['evolves_to']['0']['evolves_to'].length > 0) {
+        return true;
+    }
+}
+
+
+function getTheirdEvolution(evolutionChain) {
+    return evolutionChain['chain']['evolves_to']['0']['evolves_to']['0']['species']['url'];
+}
+
+
+async function getEvolutionsIDs(evolutions) {
+    let evolutionIDs = [];
+    for (let i = 0; i < evolutions.length; i++) {
+        let url = evolutions[i];
+        let response = await fetch(url);
+        currentPokemon = await response.json();
+        evolutionIDs.push(currentPokemon['id'] - 1); 
+    }
+    renderEvolutionsImages(evolutionIDs)
+}
+
+
+function renderEvolutionsImages(id) {
+    let container = document.getElementById('evolution-chain');
+    for (let i = 0; i < id.length; i++) {
+        let image = id[i]
+        container.innerHTML += templateEvolutions(image); 
+    }
 }
 
 

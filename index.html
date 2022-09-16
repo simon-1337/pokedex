@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
     <script src="script.js"></script>
+    <script src="template.js"></script>
     <link rel="icon" type="image/x-icon" href="./img/pokeball.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts.css">
@@ -21,7 +22,7 @@
 
     <div class="pokedex" id="pokedex"></div>
     <div id="load-more-container" class="load-more-container">
-        <button onclick="loadPokemon()" class="load-more-btn">Load More Pokemon</button>
+        <button onclick="loadPokemon(), loadPokemonsSpecies()" class="load-more-btn">Load More Pokemon</button>
     </div>
 
     <div id="details-ctn" class="details-ctn d-none">
