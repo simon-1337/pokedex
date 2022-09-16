@@ -219,6 +219,8 @@ a {
     margin-left: 8px;
 }
 
+
+/*Responsiveness of the Overview*/
 @media (max-width: 500px) {
     nav {
         padding: 16px 16px;
@@ -234,7 +236,64 @@ a {
 }
 
 
+/*Responsiveness of the Detailview*/
+@media (max-width: 950px) {
+    .details {
+        padding: 48px;
+    }
+}
 
+@media (max-width: 630px) {
+    .details {
+        padding: 48px 12px;
+    }
+
+    .details-child img {
+        margin-right: 24px;
+    }
+}
+
+@media (max-width: 530px) {
+    h2 {
+        margin-block-start: 8px;
+    }
+
+    .details {
+        padding: 12px 12px;
+    }
+
+    .details-child {
+        flex-direction: column;
+        margin-bottom: 8px;
+    }
+
+    .details-child img {
+        margin-right: 0;
+        object-fit: contain;
+        height: 168px;
+    }
+
+    .type-container-details {
+        margin: 0px 0px 12px 0px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .type-headline {
+        margin-right: 16px;
+    }
+
+    .habitat {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 430px) {
+    .evolution-image {
+        height: 87px;
+    }
+}
 
 /*Pokemon Types background colors*/
 

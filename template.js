@@ -27,7 +27,7 @@ function templateShowDetails(i) {
                 <div class="details-child-susbsection">
                     <h2>${capitalizeFirstLetter(loadedPokemon[i]['name'])}</h2>
                     <div class="type-container-details">
-                        <h4>Type:</h4>
+                        <h4 class="type-headline">Type:</h4>
                         <div id="types-section-details${i}" class="types-section-details"></div>
                     </div>
                     <div class="habitat">
