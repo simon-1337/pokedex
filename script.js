@@ -118,7 +118,7 @@ function searchPokemons() {
     input=input.toLowerCase();
     let pokemons = document.getElementsByClassName('pokemon-overview-card');
     let pokemonnames = document.getElementsByClassName('pokemon-name')    
-    for (i = 0; i < pokemons.length; i++) {
+    for (let i = 0; i < pokemons.length; i++) {
         if (!pokemonnames[i].innerHTML.toLowerCase().includes(input)) {
             pokemons[i].classList.add('d-none');
         }

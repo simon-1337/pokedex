@@ -18,7 +18,6 @@ function templateTypeSection(type, section, i, j) {
 }
 
 
-//TODO//
 function templateShowDetails(i) {
     return /*html*/ `
         <div class="details">

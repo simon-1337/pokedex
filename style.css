@@ -146,7 +146,7 @@ a {
 
 .details-child {
     display: flex;
-    margin-bottom: 18px;
+    margin-bottom: 32px;
 }
 
 .details-child img {
@@ -255,7 +255,7 @@ a {
 
 @media (max-width: 530px) {
     h2 {
-        margin-block-start: 8px;
+        margin-block-start: 12px;
     }
 
     .details {
@@ -264,7 +264,7 @@ a {
 
     .details-child {
         flex-direction: column;
-        margin-bottom: 8px;
+        margin-bottom: 32px;
     }
 
     .details-child img {
@@ -277,7 +277,7 @@ a {
         margin: 0px 0px 12px 0px;
         display: flex;
         align-items: center;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
     }
 
     .type-headline {
@@ -285,7 +285,7 @@ a {
     }
 
     .habitat {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
     }
 }
 
